@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human Typing Composer</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="app compact">
+      <header class="hero">
+        <div>
+          <h1 data-i18n="appTitle">Human Typing Composer</h1>
+          <p data-i18n="appSubtitle">Type naturally, one character at a time.</p>
+        </div>
+        <div class="hero-actions">
+          <button id="pinToggleBtn" class="icon-button" title="Pin" aria-label="Pin">📌</button>
+          <button id="themeToggleBtn" class="icon-button" title="Theme" aria-label="Theme">◐</button>
+          <button id="openSettingsBtn" class="icon-button" title="Settings" aria-label="Settings">⚙</button>
+        </div>
+      </header>
+
+      <section class="card">
+        <h2 data-i18n="inputTitle">Input Text</h2>
+        <label for="sourceText" class="field-label" data-i18n="inputLabel">Text / Markdown</label>
+        <textarea
+          id="sourceText"
+          rows="9"
+          data-i18n-placeholder="inputPlaceholder"
+          placeholder="Paste the text you want to type..."
+        ></textarea>
+
+        <div class="inline-row">
+          <label class="check">
+            <input id="autoMarkdown" type="checkbox">
+            <span data-i18n="autoMarkdown">Auto markdown font mode</span>
+          </label>
+          <span id="markdownBadge" class="badge" data-i18n="markdownOff">Plain text mode</span>
+        </div>
+
+        <div class="inline-row">
+          <label class="check">
+            <input id="enableDirectives" type="checkbox">
+            <span data-i18n="enableDirectives">Enable syntax directives</span>
+          </label>
+          <button id="rewriteWithAiBtn" class="secondary small" data-i18n="rewriteWithAi">Rewrite with AI</button>
+        </div>
+
+        <details class="syntax">
+          <summary data-i18n="syntaxSummary">Custom writing syntax</summary>
+          <p data-i18n="syntaxIntro">
+            Directives are optional. Disable them to type everything as plain text.
+          </p>
+          <div class="syntax-actions">
+            <button id="openSyntaxGuideBtn" class="secondary small" data-i18n="syntaxGuide">Open Syntax Guide</button>
+          </div>
+          <pre><code>[[rev:temporary=>final]]
+[[del:type then delete]]
+[[pause:500-1200]]
+[[choice:A||B||C]]
+[[chance:35|optional sentence]]
+[[repeat:2|echo. ]]
+[[speed:20-45]]fast[[speed:default]]
+[[fix:random]][[fixdelay:500-1800]]
+[[back:6]]
+[[raw:literal [[text]]]]</code></pre>
+        </details>
+      </section>
+
+      <section class="card progress-card">
+        <div class="progress-head">
+          <h2 data-i18n="progressTitle">Progress</h2>
+          <span id="progressStatus" class="progress-status idle" data-i18n="progressIdle">Idle</span>
+        </div>
+        <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div id="progressFill" class="progress-fill"></div>
+        </div>
+        <div class="progress-meta">
+          <span id="progressPercent">0%</span>
+          <span id="progressEta" data-i18n="progressEtaUnknown">ETA --:--</span>
+        </div>
+        <div id="progressFinishAt" class="helper" data-i18n="progressFinishUnknown">Estimated finish: --</div>
+      </section>
+
+      <section class="footer-card">
+        <div id="statusBar" class="status neutral" data-i18n="statusReady">Ready</div>
+        <div id="lockPanel" class="lock-panel hidden">
+          <div id="lockTargetLabel" class="lock-target">Target: --</div>
+          <div class="lock-actions">
+            <button id="confirmStartBtn" class="primary small" data-i18n="confirmStart">Confirm Start</button>
+            <button id="cancelLockBtn" class="secondary small" data-i18n="cancelLock">Cancel</button>
+          </div>
+        </div>
+        <div class="actions">
+          <button id="saveInputBtn" class="secondary" data-i18n="saveInput">Save Input</button>
+          <button id="stopTypingBtn" class="danger" data-i18n="stopTyping">Stop</button>
+          <button id="clearTypingBtn" class="danger-alt" data-i18n="clearTyping">Cancel & Clear</button>
+          <button id="startTypingBtn" class="primary" data-i18n="startTyping">Start Typing</button>
+        </div>
+      </section>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>

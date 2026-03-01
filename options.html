@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human Typing Composer - Settings</title>
+    <link rel="stylesheet" href="options.css">
+  </head>
+  <body>
+    <main class="settings-shell">
+      <header class="settings-hero">
+        <div>
+          <h1 data-i18n="title">Human Typing Composer Settings</h1>
+          <p data-i18n="subtitle">Move advanced controls here to keep popup focused on writing and launch.</p>
+        </div>
+        <button id="openShortcutsBtn" class="secondary" data-i18n="openShortcutPage">Open Chrome Shortcut Page</button>
+      </header>
+
+      <section class="panel">
+        <h2 data-i18n="generalTitle">General</h2>
+        <div class="grid">
+          <label for="language" data-i18n="language">Language</label>
+          <select id="language">
+            <option value="en">English</option>
+            <option value="zh">中文</option>
+          </select>
+          <label for="theme" data-i18n="theme">Theme</label>
+          <select id="theme">
+            <option value="light" data-i18n="themeLight">Light</option>
+            <option value="dark" data-i18n="themeDark">Dark</option>
+          </select>
+          <label for="autoMarkdown" data-i18n="autoMarkdown">Auto markdown font mode</label>
+          <label class="check"><input id="autoMarkdown" type="checkbox"><span data-i18n="enabled">Enabled</span></label>
+          <label for="enableDirectives" data-i18n="enableDirectives">Enable syntax directives by default</label>
+          <label class="check"><input id="enableDirectives" type="checkbox"><span data-i18n="enabled">Enabled</span></label>
+          <label for="openSyntaxGuideBtn" data-i18n="syntaxGuide">Open syntax guide</label>
+          <button id="openSyntaxGuideBtn" class="secondary" data-i18n="syntaxGuide">Open syntax guide</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2 data-i18n="typingTitle">Typing Behavior</h2>
+        <div class="grid">
+          <label for="speedMinSec" data-i18n="speedMin">Min seconds / 100 chars</label>
+          <input id="speedMinSec" type="number" min="1" max="600" step="1">
+          <label for="speedMaxSec" data-i18n="speedMax">Max seconds / 100 chars</label>
+          <input id="speedMaxSec" type="number" min="1" max="600" step="1">
+          <label for="speedRandom" data-i18n="speedRandom">Random speed in range</label>
+          <label class="check"><input id="speedRandom" type="checkbox"><span data-i18n="enabled">Enabled</span></label>
+
+          <label for="typoEnabled" data-i18n="typoEnabled">Enable typo simulation</label>
+          <label class="check"><input id="typoEnabled" type="checkbox"><span data-i18n="enabled">Enabled</span></label>
+          <label for="typoMin" data-i18n="typoMin">Min typos / 100 chars</label>
+          <input id="typoMin" type="number" min="0" max="100" step="1">
+          <label for="typoMax" data-i18n="typoMax">Max typos / 100 chars</label>
+          <input id="typoMax" type="number" min="0" max="100" step="1">
+
+          <label for="whitespaceEnabled" data-i18n="wsEnabled">Whitespace noise enabled</label>
+          <label class="check"><input id="whitespaceEnabled" type="checkbox"><span data-i18n="enabled">Enabled</span></label>
+          <label for="whitespaceMin" data-i18n="wsMin">Min ws events / 100 chars</label>
+          <input id="whitespaceMin" type="number" min="0" max="100" step="1">
+          <label for="whitespaceMax" data-i18n="wsMax">Max ws events / 100 chars</label>
+          <input id="whitespaceMax" type="number" min="0" max="100" step="1">
+          <label for="whitespaceKeep" data-i18n="wsKeep">Keep whitespace noise in final text</label>
+          <label class="check"><input id="whitespaceKeep" type="checkbox"><span data-i18n="enabled">Enabled</span></label>
+
+          <label for="noiseCorrectionMode" data-i18n="noiseFixMode">Noise correction mode</label>
+          <select id="noiseCorrectionMode">
+            <option value="legacy" data-i18n="noiseFixLegacy">Legacy behavior</option>
+            <option value="off" data-i18n="noiseFixOff">Do not auto-correct</option>
+            <option value="immediate" data-i18n="noiseFixImmediate">Correct immediately</option>
+            <option value="delayed" data-i18n="noiseFixDelayed">Correct after delay</option>
+            <option value="random" data-i18n="noiseFixRandom">Random immediate/delayed</option>
+          </select>
+          <label for="noiseCorrectionDelayMinMs" data-i18n="noiseFixDelayMin">Correction delay min (ms)</label>
+          <input id="noiseCorrectionDelayMinMs" type="number" min="0" max="20000" step="50">
+          <label for="noiseCorrectionDelayMaxMs" data-i18n="noiseFixDelayMax">Correction delay max (ms)</label>
+          <input id="noiseCorrectionDelayMaxMs" type="number" min="0" max="20000" step="50">
+
+          <label for="pauseMinMs" data-i18n="pauseMin">Min pause (ms)</label>
+          <input id="pauseMinMs" type="number" min="0" max="20000" step="50">
+          <label for="pauseMaxMs" data-i18n="pauseMax">Max pause (ms)</label>
+          <input id="pauseMaxMs" type="number" min="0" max="20000" step="50">
+          <label for="pauseCountPer100" data-i18n="pauseCount">Pause events / 100 chars</label>
+          <input id="pauseCountPer100" type="number" min="0" max="20" step="1">
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2 data-i18n="shortcutTitle">Emergency Shortcuts</h2>
+        <p class="hint" data-i18n="shortcutHint">
+          These are in-page shortcuts. You can also adjust global command shortcuts from Chrome shortcut page.
+        </p>
+        <div class="grid">
+          <label for="stopShortcut" data-i18n="stopShortcut">Stop typing shortcut</label>
+          <input id="stopShortcut" type="text" placeholder="Ctrl+Shift+X">
+          <label for="clearShortcut" data-i18n="clearShortcut">Clear output shortcut</label>
+          <input id="clearShortcut" type="text" placeholder="Ctrl+Shift+Y">
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2 data-i18n="aiTitle">AI Rewrite (OpenAI-Compatible)</h2>
+        <div class="grid">
+          <label for="apiBaseUrl" data-i18n="apiBaseUrl">API Base URL</label>
+          <input id="apiBaseUrl" type="url" placeholder="https://api.openai.com/v1">
+          <label for="apiKey" data-i18n="apiKey">API Key</label>
+          <input id="apiKey" type="password" placeholder="sk-...">
+          <label for="apiModel" data-i18n="apiModel">Model</label>
+          <input id="apiModel" type="text" placeholder="gpt-4o-mini">
+          <label for="deletedSentenceCount" data-i18n="deletedSentenceCount">Deleted sentence target count</label>
+          <input id="deletedSentenceCount" type="number" min="0" max="100" step="1">
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div id="statusBar" class="status neutral" data-i18n="statusReady">Ready</div>
+        <div class="actions">
+          <button id="resetDefaultsBtn" class="danger-alt" data-i18n="resetDefaults">Reset Defaults</button>
+          <button id="saveBtn" class="primary" data-i18n="saveSettings">Save Settings</button>
+        </div>
+      </footer>
+    </main>
+    <script src="options.js"></script>
+  </body>
+</html>

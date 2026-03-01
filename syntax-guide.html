@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Writing Syntax Guide</title>
+    <link rel="stylesheet" href="syntax-guide.css">
+  </head>
+  <body>
+    <main class="shell">
+      <header class="hero">
+        <h1>Custom Writing Syntax</h1>
+        <p id="subtitle">Detailed and practical reference for human-like scripted typing.</p>
+        <div class="lang-switch" role="group" aria-label="Language switch">
+          <button id="langEn" class="active" type="button">EN</button>
+          <button id="langZh" type="button">中文</button>
+        </div>
+      </header>
+
+      <section class="card lang lang-en">
+        <h2>Quick Start</h2>
+        <ol>
+          <li>Enable <code>Custom writing syntax</code> in the popup.</li>
+          <li>Write directives as <code>[[command:payload]]</code>.</li>
+          <li>Click start and let the script drive typing order.</li>
+        </ol>
+        <p><strong>Important:</strong> when directives are detected, built-in random typo/whitespace/pause noise is automatically disabled to avoid conflicts.</p>
+      </section>
+
+      <section class="card lang lang-en">
+        <h2>Core Directives</h2>
+        <table>
+          <thead>
+            <tr><th>Directive</th><th>Meaning</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>[[rev:draft=>final]]</code></td><td>Type draft, pause, delete draft, type final.</td></tr>
+            <tr><td><code>[[del:text]]</code></td><td>Type text then delete it.</td></tr>
+            <tr><td><code>[[pause:1200]]</code></td><td>Pause exact milliseconds.</td></tr>
+            <tr><td><code>[[pause:500-1600]]</code></td><td>Pause with random range.</td></tr>
+            <tr><td><code>[[choice:A||B||C]]</code></td><td>Pick one option randomly.</td></tr>
+            <tr><td><code>[[chance:35|text]]</code></td><td>Type nested text with probability.</td></tr>
+            <tr><td><code>[[repeat:3|text]]</code></td><td>Repeat nested text N times.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="card lang lang-en">
+        <h2>Behavior Controls</h2>
+        <table>
+          <thead>
+            <tr><th>Directive</th><th>Meaning</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>[[speed:20-45]]</code></td><td>Set speed in seconds per 100 chars.</td></tr>
+            <tr><td><code>[[speed:default]]</code></td><td>Reset speed to session baseline.</td></tr>
+            <tr><td><code>[[typo:on/off/default/2-5]]</code></td><td>Control typo behavior inside syntax flow.</td></tr>
+            <tr><td><code>[[ws:on/off/default/1-3/keep/drop]]</code></td><td>Control whitespace noise behavior.</td></tr>
+            <tr><td><code>[[fix:off|immediate|delayed|random|default]]</code></td><td>Control typo/ws auto-correction mode.</td></tr>
+            <tr><td><code>[[fixdelay:300-1800]]</code></td><td>Set correction delay range in ms.</td></tr>
+            <tr><td><code>[[back:12]]</code></td><td>Delete previous 12 characters.</td></tr>
+            <tr><td><code>[[raw:literal [[text]]]]</code></td><td>Output payload as plain text.</td></tr>
+            <tr><td><code>[[note:any text]]</code></td><td>No-op comment marker.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="card lang lang-en">
+        <h2>Escaping and Nested Syntax</h2>
+        <ul>
+          <li>Escape literal markers with backslash: <code>\[[</code> <code>\]]</code>.</li>
+          <li>Escape delimiter pipe with <code>\|</code>.</li>
+          <li>Nested directives are supported inside <code>choice/chance/repeat</code>.</li>
+          <li>Range parser supports <code>-</code>, <code>–</code>, <code>—</code>, <code>~</code>, and <code>to</code>.</li>
+        </ul>
+      </section>
+
+      <section class="card lang lang-en">
+        <h2>Complete Example</h2>
+        <pre><code>Headline draft [[rev:temporary title=>final title]]
+[[pause:900-1500]]
+
+[[choice:
+The committee supports the motion.||
+The committee broadly supports the motion.||
+The committee supports the motion with caveats.
+]]
+
+[[chance:35|[[del:This sentence is typed and removed.]]]]
+[[speed:22-34]]fast segment[[speed:default]]
+[[fix:random]][[fixdelay:600-2000]]
+[[repeat:2|[[choice:short echo.||slightly longer echo.]] ]]
+[[back:3]]end.</code></pre>
+      </section>
+
+      <section class="card lang lang-zh hidden">
+        <h2>快速开始</h2>
+        <ol>
+          <li>在弹窗中启用 <code>Custom writing syntax</code>。</li>
+          <li>使用 <code>[[命令:参数]]</code> 形式写语法。</li>
+          <li>点击开始后，插件按语法控制输入顺序。</li>
+        </ol>
+        <p><strong>注意：</strong>检测到语法指令后，插件内置的随机 typo/空白噪点/自然停顿会自动关闭，避免和脚本冲突。</p>
+      </section>
+
+      <section class="card lang lang-zh hidden">
+        <h2>核心指令</h2>
+        <table>
+          <thead>
+            <tr><th>指令</th><th>含义</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>[[rev:draft=>final]]</code></td><td>先打草稿，停顿，删掉草稿，再打最终文本。</td></tr>
+            <tr><td><code>[[del:text]]</code></td><td>输入后删除。</td></tr>
+            <tr><td><code>[[pause:1200]]</code></td><td>固定停顿毫秒数。</td></tr>
+            <tr><td><code>[[pause:500-1600]]</code></td><td>区间随机停顿。</td></tr>
+            <tr><td><code>[[choice:A||B||C]]</code></td><td>随机选一个分支。</td></tr>
+            <tr><td><code>[[chance:35|text]]</code></td><td>按概率执行嵌套文本。</td></tr>
+            <tr><td><code>[[repeat:3|text]]</code></td><td>重复执行 N 次。</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="card lang lang-zh hidden">
+        <h2>行为控制指令</h2>
+        <table>
+          <thead>
+            <tr><th>指令</th><th>含义</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>[[speed:20-45]]</code></td><td>设置每 100 字用时（秒）。</td></tr>
+            <tr><td><code>[[speed:default]]</code></td><td>恢复为当前会话基线速度。</td></tr>
+            <tr><td><code>[[typo:on/off/default/2-5]]</code></td><td>在语法脚本内部控制 typo。</td></tr>
+            <tr><td><code>[[ws:on/off/default/1-3/keep/drop]]</code></td><td>控制空白噪点策略。</td></tr>
+            <tr><td><code>[[fix:off|immediate|delayed|random|default]]</code></td><td>控制 typo/ws 自动修正策略。</td></tr>
+            <tr><td><code>[[fixdelay:300-1800]]</code></td><td>设置修正延迟区间（毫秒）。</td></tr>
+            <tr><td><code>[[back:12]]</code></td><td>删除前 12 个字符。</td></tr>
+            <tr><td><code>[[raw:literal [[text]]]]</code></td><td>按原样输出，不当作指令。</td></tr>
+            <tr><td><code>[[note:any text]]</code></td><td>注释占位，不执行。</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="card lang lang-zh hidden">
+        <h2>转义与嵌套</h2>
+        <ul>
+          <li>字面量标记转义：<code>\[[</code> <code>\]]</code>。</li>
+          <li>竖线分隔符转义：<code>\|</code>。</li>
+          <li><code>choice/chance/repeat</code> 支持嵌套指令。</li>
+          <li>区间解析支持 <code>-</code>、<code>–</code>、<code>—</code>、<code>~</code>、<code>to</code>。</li>
+        </ul>
+      </section>
+
+      <section class="card lang lang-zh hidden">
+        <h2>完整示例</h2>
+        <pre><code>Headline draft [[rev:temporary title=>final title]]
+[[pause:900-1500]]
+
+[[choice:
+The committee supports the motion.||
+The committee broadly supports the motion.||
+The committee supports the motion with caveats.
+]]
+
+[[chance:35|[[del:This sentence is typed and removed.]]]]
+[[speed:22-34]]fast segment[[speed:default]]
+[[fix:random]][[fixdelay:600-2000]]
+[[repeat:2|[[choice:short echo.||slightly longer echo.]] ]]
+[[back:3]]end.</code></pre>
+      </section>
+    </main>
+
+    <script src="syntax-guide.js"></script>
+  </body>
+</html>

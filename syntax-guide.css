@@ -1,0 +1,141 @@
+:root {
+  color-scheme: light;
+  --bg-a: #f2f6ff;
+  --bg-b: #fcfdff;
+  --panel: #ffffff;
+  --ink: #10213d;
+  --muted: #5f6f89;
+  --border: #d7deee;
+  --accent: #0c7b58;
+  --shadow: 0 14px 36px rgba(28, 50, 92, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Avenir Next", "Segoe UI Variable", "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: linear-gradient(145deg, var(--bg-a), var(--bg-b));
+}
+
+.shell {
+  width: min(980px, 100%);
+  margin: 0 auto;
+  padding: 22px 14px 28px;
+}
+
+.hero {
+  background: radial-gradient(circle at top right, rgba(104, 155, 237, 0.2), var(--panel) 64%);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  margin-bottom: 14px;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(24px, 4vw, 34px);
+}
+
+.hero p {
+  margin: 10px 0 14px;
+  color: var(--muted);
+}
+
+.lang-switch {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.lang-switch button {
+  border: 0;
+  background: #f1f4fb;
+  color: var(--ink);
+  padding: 8px 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.lang-switch button.active {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.card h2 {
+  margin: 0 0 10px;
+}
+
+.card p,
+.card li {
+  color: var(--ink);
+  line-height: 1.52;
+}
+
+.card ul,
+.card ol {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.card pre {
+  margin: 0;
+  border-radius: 10px;
+  border: 1px solid #dde4f2;
+  background: #f7f9ff;
+  padding: 12px;
+  overflow: auto;
+}
+
+.card code {
+  font-family: "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 12.5px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+th,
+td {
+  border: 1px solid #dde4f2;
+  padding: 8px;
+  vertical-align: top;
+  text-align: left;
+  font-size: 13px;
+}
+
+th {
+  background: #f3f7ff;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .shell {
+    padding: 12px;
+  }
+
+  th,
+  td {
+    font-size: 12px;
+  }
+}
