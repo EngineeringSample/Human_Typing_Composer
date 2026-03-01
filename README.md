@@ -1,7 +1,5 @@
 # Human Typing Composer (Chrome Extension)
 
-English + 中文双语说明
-
 ## Features
 - One-by-one character typing simulation for focused editable elements.
 - Smart target fallback: if no focused editable field, extension auto-selects the best visible editable area.
